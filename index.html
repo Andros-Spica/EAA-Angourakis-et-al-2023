@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Disentangling georesourcescapes with agent-based modelling</title>
+
+		<meta name="description" content="Made with Reveal.JS, A framework for easily creating beautiful presentations using HTML, by Hakim El Hattab">
+		<meta name="author" content="Andreas Angourakis">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal.js/dist/theme/white.css" id="theme">
+		
+		<!-- Custom modifications to structure slides -->
+		<link rel="stylesheet" href="myMods.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/zenburn.css" id="highlight-theme">
+		
+		<!-- Font awesome -->
+		<link rel="stylesheet" href="reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+            	<section data-state="title-page" data-background="https://asset.museum-digital.org//media/800/san/images/7/96915-k_3218/oberer_salzach_1941/oberer-salzach-1941-96915.jpg">
+					<h3 style="background-color: rgba(255, 255, 255, 0.1); font-weight: bold;">Disentangling georesourcescapes with agent-based modelling</h3>
+					<h4 style="background-color: rgba(255, 255, 255, 0.1); font-weight: 100;">the case of prehistoric salt mining at Dürrnberg, Austria</i></h4>
+					<p style="background-color: rgba(255, 255, 255, 0.1);">
+						Andreas <b>Angourakis</b>
+						<a href="https://twitter.com/AndrosSpica" target="_blank"><i style="color:navy">@AndrosSpica</i></a>,	
+						<br>
+						Nicole <b>Boenke</b>, Thomas <b>Stöllner</b>
+					</p>
+					<div id="right40" style="background-color:#17365c;">
+						<img src="https://services.ruhr-uni-bochum.de/themes/custom/rub/logo.svg" alt="RUB logo"
+					style="width: 350px; border: none; box-shadow: none;"/> &nbsp;
+					</div>
+					<div id="right30">
+						<img src="https://reform.ressourcencampus-bochum.de/wp-content/uploads/2022/02/Image20211019144937-2-2000x1639.jpg" alt="Leipzig logo"
+					style="width: 100px; border: none; box-shadow: none;"/> &nbsp;
+					</div>
+					<div id="left30">
+						<img src="https://reform.ressourcencampus-bochum.de/wp-content/uploads/2022/03/cropped-Reform_Logo_invers_RGB.png" alt="ReForm logo"
+					style="width: 350px; border: none; box-shadow: none;"/>
+					</div>
+					<br>
+					<p style="font-size: 20%; text-align: right;">
+						&nbsp;<br>
+						Oberer Salzach, 1941 by Bruno Jüttner (1880-1965)<br>
+						<a title="Harzmuseum Wernigerode. (2022-12-14). K 3218: Oberer Salzach, 1941" 
+						href="https://st.museum-digital.de/object/96915"
+						style="background-color: rgba(255, 255, 255, 0.1);">
+						(Harzmuseum Wernigerode, K 3218)
+						</a>
+					</p>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+				
+				<section>
+					<h4>Outline</h4>
+					<ol>
+						<li>Question, case study and approach</li>
+						<li>Social complexity and salt mining</li>
+						<li>'Artifact metabolism': a modelling framework</li>
+						<li>Challenges</li>
+					</ol>
+				</section>
+				
+				<section>
+					<section>
+						<h3>1. <i style="color: maroon;"><br>Question,<br>case study<br>and approach</i></h3>
+					</section>
+
+					<section>
+						<i style="color: darkorange;">Geo</i><i style="color: maroon;">resourcescapes</i> 
+						<br>
+						<div id="left50">
+							<p style="font-size: 50%; margin-bottom: 0px;">
+								The entanglement of<br>
+								<u>social practices</u> and <u>environmental conditions</u><br>
+								through which societies appropriate a <u>georesource</u><br>
+								(after Stöllner 2021)
+							</p>
+							<a title="Adam Jones from Kelowna, BC, Canada, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Detail_of_Indigenous_Weaving_-_Textile_Museum_-_Oaxaca_-_Mexico_-_03_(15363141415).jpg">
+								<figure>
+									<img width="512" alt="Detail of Indigenous Weaving - Textile Museum - Oaxaca - Mexico - 03 (15363141415)" 
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Detail_of_Indigenous_Weaving_-_Textile_Museum_-_Oaxaca_-_Mexico_-_03_%2815363141415%29.jpg/512px-Detail_of_Indigenous_Weaving_-_Textile_Museum_-_Oaxaca_-_Mexico_-_03_%2815363141415%29.jpg"
+								style="margin-bottom: 0px;">
+								<br>
+								<figcaption style="font-size: 30%;">Detail of Indigenous Weaving, Textile Museum, Oaxaca, Mexico (Adam Jones, Wikimedia)</figcaption>
+								</figure>
+							</a>
+						</div>
+						<div id="center50" style="font-size: 50%;">
+							<br>
+							<h4>Systems thinking interpretation</h4>
+							<p>
+								elements in a <b>causal mechanism</b><br>
+								are related in such a way that<br>
+								the state of one is closely linked to<br>
+								the state of many others
+								<br><br>
+								<b>diffuse causality</b> & <b>feedback loops</b>
+								<br>
+								<img width="300px" src="images/diffuse-causality-and-feedback-loops.png">
+							</p>
+							<p>
+								Can we identify mechanisms that explain the formation of georesourcescapes?<br>
+							i.e. <u style="color: maroon;">emergence</u> 
+							</p>
+						</div>
+						<br>
+						<p style="font-size: 50%;">
+					</section>
+					
+					<section>
+						<h4>rock salt mining at Dürrnberg</h4>
+						<div id="right50" style="font-size: 50%;">
+							<ul>
+								<li class="fragment">Well-studied archaeological site<br>(incl. work by Stöllner, Boenke, et al.)</li>
+								<li class="fragment">Core area of a wider, far-reaching archaeological culture (Hallstatt)</li>
+								
+							</ul>
+						</div>
+
+						<div id="left50">
+							<a title="Dbachmann, CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Hallstatt_LaTene.png">
+								<figure style="width: 450px; font-size: 30%; text-align: center;">
+									<img width="512" alt="Hallstatt LaTene" src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Hallstatt_LaTene.png">
+									<br>
+									<figcaption>Overview map of the Hallstatt (yellow) and La Tène (green) cultures. 
+										After Atlas of the Celtic World, by John Haywood; 
+										London Thames & Hudson Ltd., 2001, pp. 30-37.<br>
+										(Dbachmann via Wikimedia Commons)</figcaption>
+								</figure>
+							</a>
+							<br>
+							<ul style="font-size: 50%;">
+								<li class="fragment">Particularity and importance due to rock salt mining</li>
+								<li class="fragment">Links crafts, exchange and political complexity</li>
+							</ul>
+						</div>
+						<div id="right50">
+							<figure style="width: 450px; font-size: 30%; text-align: center;">
+								<img width="450" alt="Stoellner2003_Fig39-Inn-Salzach-area-salt-mining-centres-and-hinterlands.png" 
+								src="images/Stoellner2003_Fig39-Inn-Salzach-area-salt-mining-centres-and-hinterlands.png" style="margin-bottom: 0px;">
+								<br>
+								<figcaption>Inn-Salzach area salt mining centres and hinterlands<br>(mod. from Stöllner 2003, Fig 39)</figcaption>
+							</figure>
+						</div>
+					</section>
+
+					<section>
+						<h4>Dürrnberg settlement change</h4>
+						<div id="left70">
+							<figure style="width: 700px; font-size: 30%; text-align: center;">
+								<figcaption style="margin-bottom: -15px;">Stöllner 2002, Fig 6 (modified)</figcaption>
+								<img width="700" alt="Boenke2006_Abb11+Stoellner2002_Fig6.png" 
+								src="images/Boenke2006_Abb11+Stoellner2002_Fig6.png" style="margin-bottom: 0px;">
+								<br>
+								<figcaption>Boenke 2006, Abb11 (modified)</figcaption>
+							</figure>
+						</div>
+						<div id="right30">
+							<ul style="font-size: 60%; margin-left: 50px;">
+								<li>Dual settlement:<br>
+									<ul>
+										<li>Mines (Bad Dürrnberg proper)</li>
+										<li>Village (Hallein)</li>
+									</ul>
+								</li>
+								<br>
+								<li>Salt mining:<br>
+									<ul>
+										<li>Beginnings (Ha D: c.620–450)</li>
+										<li>Intensification<br>(Lt A/B: c.500-250 BC)</li>
+										<li>Resilience to troubled times<br>in later periods</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<section>
+						<h4>What salt mining entails</h4>
+						<div id="left60">
+							<figure style="width: 700px; font-size: 30%; text-align: center;">
+								<img width="500" alt="Boenke2006 Fig 92" 
+								src="images/Boenke2006_Fig92.png" style="margin-bottom: 0px;">
+								<br>
+								<figcaption>Boenke 2006, Fig. 92 (translated)</figcaption>
+							</figure>
+						</div>
+						<div id="right40" style="font-size: 60%;">
+							<p>
+								Wood and food consumption estimates
+								(e.g. for c. 1000 to 1700 workers)
+								indicate salt mining activity costed a substantial economic effort
+							</p>
+							<p>Labour intensity and<br>poor conditions</p>
+							<p>Multiplication of activities<br>(crafts, specialisations)</p>
+							<p>Dependency on exchange</p> 
+						</div>
+					</section>
+
+					<section>
+						<h4>Simulation of Socio-environmental Systems</h4>
+						<div id="left50">
+							<p style="font-size: 80%;">
+							Socio-ecological System (SES)
+								<br>
+								Simulation
+								<br>
+								Agent-based modelling
+							</p>
+							<a title="Sreejiagriman, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" 
+							href="https://commons.wikimedia.org/wiki/File:Conceptual_Model_Socioecological_Drivers_of_Change.jpg">
+							<figure style="font-size: 30%; text-align: center;">
+								<img width="512" alt="Conceptual Model Socioecological Drivers of Change" 
+								src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Conceptual_Model_Socioecological_Drivers_of_Change.jpg/512px-Conceptual_Model_Socioecological_Drivers_of_Change.jpg">
+								<figcaption>Example of conceptual Model Socioecological Drivers of Change<br>(Sreejiagriman via Wikimedia Commons)</figcaption>
+							</figure>
+						</div>
+						<div id="right50">
+						</a>
+							<a title="Kremmydas 2012, Fig. 5" 
+							href="https://d3i71xaburhd42.cloudfront.net/6d10e0aa4d88e1afd6b74be76f015e169b95cec9/15-Figure5-1.png">
+							<figure style="width: 300px; font-size: 30%; text-align: center;">
+								<img width="400px" alt="Kremmydas 2012, Fig. 5" 
+								src="https://d3i71xaburhd42.cloudfront.net/6d10e0aa4d88e1afd6b74be76f015e169b95cec9/15-Figure5-1.png">
+								<figcaption>Example of data layers in an ABM model<br>(Kremmydas 2012, Fig. 5)</figcaption>
+							</figure>
+							</a>
+							<p style="font-size: 60%;">
+								Many examples in archaeology<br>
+								e.g., Doran et al. 1994, Wilkinson et al. 2013,<br>Lake 2014, Madella et al. 2014,<br>Wurzer et al. 2015,<br>Romanwska et al. 2019, 2021
+							</p>
+						</div>
+						
+						<aside class="notes">
+							<h4>Socio-ecological System (SES)</h4>
+							<ul>
+								<li>also: <i>Socio-environmental system</i></li>
+								<li>Social and biophysical factors seen under the same system</li>
+								<li>Multiple scales of interaction, incl. feedbacks</li>
+								<li>Complex (adaptative) system<br>emergence as self-organisation</li>
+								<li>Adaptative cycle (Holling 1986)</li>
+							</ul>
+							<h4>Simulation</h4>
+							<ul>
+								<li>Numerical solutions for time iterations<br>(possible histories)</li>
+								<li>Explanatory mathematical modelling<br>(mechanisms)</li>
+								<li>Social mechanisms -> social simulation (Gilbert & Troitzsch 2005)</li>
+								<li>Varying aims, from theory-building and hypothesis-testing<br>to prediction and visualisation</li>
+							</ul>
+							<h4>Agent-based modelling</h4>
+							<ul>
+								<li>Distributed (miro-macro)</li>
+								<li>(controlled) stochasticity</li>
+								<li>Focus on agency</li>
+								<li>Potential for spatial dynamics (GIS)</li>
+								<li>Modularity & hybridisation</li>
+							</ul>
+							In the last two decades,<br>ABM became a normal methodological practice in many disciplines.
+							<br>
+							Established field in archaeology<br>
+								with many and varied applications<br>
+						</aside>
+					</section>
+
+					<section>
+						ABM on Hallstatt
+						<div id="left30">
+							<figure style="width: 300px; font-size: 30%; text-align: center;">
+								<img width="300" alt="Kowarik-et-al_2015_Fig7.3.png" 
+								src="images/Kowarik-et-al_2015_Fig7.3.png" style="margin-bottom: 0px;">
+								<img width="300" alt="Kowarik-et-al-2015_Fig7.4.jpg" 
+								src="images/Kowarik-et-al-2015_Fig7.4.jpg" style="margin-bottom: 0px;">
+							</figure>
+
+						</div>
+						<div id="left30">
+							<figure style="width: 300px; font-size: 30%; text-align: center;">
+								<img width="300" alt="Kowarik-et-al_2015_Fig7.7.png" 
+								src="images/Kowarik-et-al_2015_Fig7.7.png" style="margin-bottom: 0px;">
+								<img width="300" alt="Kowarik-et-al-2015_Fig7.10.jpg" 
+								src="images/Kowarik-et-al-2015_Fig7.10.jpg" style="margin-bottom: 0px;">
+								<figcaption>Kowarik et al. 2015, Figs. 7.3, 7.4, 7.7, 7.10</figcaption>
+							</figure>
+						</div>
+						<div id="right30" style="font-size: 40%;">
+							<p>
+								Work done by K. Kowarik, G. Wurzer,<br>H. Reschreiter et alle<br>
+								(Kowarik et al. 2015, 2012, 2010) 
+							</p>
+							<p>
+								"Business process simulation" (G. Wurzer)
+							</p>
+							<p>
+								<h4>Progressive modelling</h4>
+								<ul>
+									<li>Increasing complexity starting at the mine shaft up to the regional scale.</li>
+									<li>Multiple models and experiments</li>
+									<li>Interesting results on:
+										<ul>
+											<li>Mining logistics (gallery formation, labour requiremnts and organisation)</li>
+											<li>General demographic dynamics at local scale<br>(hybrid ABM-SD model)</li>
+										</ul>
+									</li>
+									<li>Apparently truncated workplan</li>
+								</ul>
+								
+							</p>
+							<p>
+								
+							</p>
+						</div>
+					</section>
+					
+				</section>
+
+				<section>
+					<section>
+						<h3>2. <i style="color: maroon;"><br>Social complexity<br>and salt mining</i></h3>
+					</section>
+
+					<section>
+						There is no "economic sphere" in isolation<br>(sensu Sahlings, Polanyi)
+					</section>
+
+					<section>
+						<h4>Domestic Mode of Production</h4>
+						<div id="left60">
+							<div class="r-stack">
+								<img src="images/1_DMP_no pool.png" alt="domestic exchanges"
+								style="width: 350px; border: none; box-shadow: none"/>
+								<img class="fragment" src="images/1_DMP.png" alt="domestic pool"
+								style="width: 350px; border: none; box-shadow: none"/>
+							</div>
+						</div>
+
+						<div id="right40" style="font-size: 80%;">
+							<ul class="fragment">
+								<li>Pooling of labour/resources for production/consumption</li>
+								<li>Production <u style="color: maroon;">for use value</u>:<br>
+									limited necessities, limited production effort, aggregate underproduction
+								</li>
+								<li>Cohesive decision-making</li>
+								<li>Household autonomy &rarr; interhousehold anarchy</li>
+								<li>Full independence and self-sufficiency state (only theoretical)</li>
+							</ul>
+							<p style="font-size: 40%;">
+								Sahlins 1972. Stone Age Economics
+							</p>
+						</div>
+
+						<div id="left60">
+							<div class="fragment">
+								<img src="images/Chayanov Slope.png" alt="Chayanov's slope"
+									style="width: 600px; border: none; box-shadow: none"/>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h4>Exchange</h4>
+						<div id="left60">
+							<div class="r-stack">
+								<img src="images/2-1_spheres of reciprocity_lineage.png" alt="domestic exchanges"
+								style="width: 600px; border: none; box-shadow: none"/>
+								<img class="fragment" src="images/2-2_spheres of reciprocity_village.png" alt="domestic pool"
+								style="width: 600px; border: none; box-shadow: none"/>
+								<img class="fragment" src="images/2-3_spheres of reciprocity_tribe.png" alt="domestic pool"
+								style="width: 600px; border: none; box-shadow: none"/>
+								<img class="fragment" src="images/2-4_spheres of reciprocity_polity.png" alt="domestic pool"
+								style="width: 600px; border: none; box-shadow: none"/>
+							</div>
+						</div>
+
+						<div id="right40">
+							<ul style="font-size: 60%;">
+								<li>Strong rule of kinship</li>
+								<li>Generalised, balanced and negative reciprocity</li>
+								<li>Most regular exchanges entail pooling</li>
+								<li>Tensions between production for use and production for exchange<br>(self-interest vs. moral obligations to kin)</li>
+								<li>Increasing production for exchange<br>(overproduction from household perspective)<br>&rarr; deviation from Chayanov's slope</li>
+								<li>Social complexity both as requirer and enabler of intensification</li>
+							</ul>
+						</div>
+						<p style="font-size: 40%;">
+							Sahlins 1972. Stone Age Economics
+						</p>
+
+						<div id="left60">
+							<div class="fragment">
+								<img src="images/Chayanov Slope_deviation.png" alt="Chayanov's slope"
+									style="width: 600px; border: none; box-shadow: none"/>
+							</div>
+						</div>
+					</section>
+					
+					<section>
+						<h4>Leadership</h4>
+						<div id="left60">
+							<img class="fragment" src="images/2-4_spheres of reciprocity_polity.png" alt="domestic pool"
+								style="width: 600px; border: none; box-shadow: none"/>
+						</div>
+
+						<div id="right40">
+							<ul class="fragment" style="font-size: 60%;">
+								<li>Pooling challenges increase with scale</li>
+								<li>Leaders drive pooling and domestic overproduction<br>(as decision-makers, negotiators)</li>
+								<li>Households handling (recurrently) extra costs of exchanges</li>
+								<li>Coercion and power replace kinship</li>
+								<li>Inequality disrupts exchange balance</li>
+								<li>Negative reciprocity weakens leadership</li>
+								<li>More pooling boosts leader power</li>
+								<li>Leadership needed for "production for exchange" economy?</li>
+							</ul>
+						</div>
+
+						<div id="left60">
+							<div class="fragment">
+								<img src="images/Chayanov Slope_deviation2.png" alt="Chayanov's slope"
+									style="width: 600px; border: none; box-shadow: none"/>
+							</div>
+						</div>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h3>3. <i style="color: maroon;"><br>'Artifact metabolism':<br>a modelling framework</i></h3>
+						
+					</section>
+
+					<section>
+						<h4>modelling target</h4>
+							
+						<div id="left50">
+							<br><br>
+							<figure style="width: 300px; font-size: 30%; text-align: center;">
+								<img width="300" alt="Kowarik-et-al_2015_Fig7.1.png" 
+								src="images/Kowarik-et-al_2015_Fig7.1.png" style="margin-bottom: 0px;">
+								<figcaption>Kowarik et al. 2015, Fig. 7.1</figcaption>
+							</figure>
+							<br>
+							<p style="font-size: 80%;">
+								Shifting focus from gallery/mine<br>
+								to settlement and region
+							</p>
+						</div>
+						<div id="right50" style="font-size: 60%;">
+							<p>
+								<b>Reproducing a sustainable rock salt economy 
+								under the conditions at Dürrnberg</b><br>
+								and<br>
+								<b>identify scenarios and factors of formation/intensification/obliteration</b>
+							</p>
+							<p>
+								Intensive re-use of modules to encompass all relevant domains:<br>
+								<ul>
+									<li>food economy</li>
+									<li>demography</li>
+									<li>social structure</li>
+									<li>multiple crafts</li>
+									<li>local and regional exchange</li>
+								</ul>
+								<br><br>
+								From present and future work on <a href="https://github.com/Andros-Spica/indus-village-model">
+									the Indus Village model
+								</a> (Angourakis et al. 2020, 2021, 2022), <a href="https://archaeology-abm.github.io/NASSA-hub">NASSA library</a>, and other sources
+							</p>
+						</div>
+					</section>
+
+					<section>
+						<h4>The metabolism analogy</h4>
+
+						<a title="Evans Love, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Human_Metabolism_-_Pathways.jpg">
+							<img width="600" alt="Human Metabolism - Pathways" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Human_Metabolism_-_Pathways.jpg/512px-Human_Metabolism_-_Pathways.jpg"></a>
+						<p style="font-size: 80%;">The "complicated" should eventually be just "complex"</p>
+					</section>
+
+					<section>
+						<div id="left50">
+							<img width="500" alt="economy" 
+								src="images/Activity and households.png" style="margin-bottom: 0px;">
+						</div>
+						<div id="right50" style="font-size: 60%; text-align: center;">
+							<h4>Entities</h4>
+							<ul>
+								<li>Households</li>
+								<li>Work teams</li>
+								<li>Land unit</li>
+							</ul>
+							<br><br><br>
+							<h4>Activities</h4>
+							<ul>
+								<li>Iterative process of a work team</li>
+								<li>Input: labour, artifacts and land (incl. resources)</li>
+								<li>Output: artifacts, well being, events, ...</li>
+								<li>Requirements (qualitative, quantitative)</li>
+							</ul>
+							<br><br><br>
+						</div>
+						<div style="font-size: 60%;">
+							<h4>Artifacts</h4>
+							<ul>
+								<li>A broad spectrum of types with different properties (e.g., movable, container, etc)</li>
+								<li>Intrinsically linked to the activities making them</li>
+								<li>Used in activities (production) and direct consumption</li>
+							</ul>
+						</div>
+					</section>
+
+					<section>
+						<h4>Activity class<br>Dummy example in Python</h4>
+						<div id="left50" style="text-align: left;">
+							<p style="font-size: 40%;">
+								(print in terminal)<br>
+								<i style="color:maroon">activity setup</i><br>
+								Activity output: axe<br>
+								Input types: dict_keys(['wood', 'stone'])<br>
+								Production functions: min(labor, land, wood, stone)<br>
+								Max. productivity per input artifact per type: {'wood': 25, 'stone': 100}<br>
+								Max. productivity per labor: 3<br>
+								Max. productivity per land: 10<br><br>
+								<i style="color:maroon">activity performance</i><br>
+								Activity output: axe<br>
+								Input: labor=10, land=20, artifacts={'wood': 100, 'stone': 50}<br>
+								Output: axe=30<br>
+								{'wood': 98.80000000000001, 'stone': 49.7, 'axe': 30}
+							</p>
+						</div>
+
+						<div id="right50">
+							<div style="font-size: 40%; text-align: left;">
+								<i style="color: maroon;">Artifact type definition (JSON)</i><br>
+								{<br>
+									&nbsp;&nbsp;&nbsp;"name": "axe",<br>
+									&nbsp;&nbsp;&nbsp;"step_amount": 1,<br>
+									&nbsp;&nbsp;&nbsp;"max_productivity_per_labor": 3,<br>
+									&nbsp;&nbsp;&nbsp;"max_productivity_per_land": 10,<br>
+									&nbsp;&nbsp;&nbsp;"max_productivity_per_input_artifact_per_type": {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"wood": 25,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stone": 100<br>
+										&nbsp;&nbsp;&nbsp;},<br>
+									"production_function": "min(labor, land, wood, stone)"<br>
+								}
+							</div>
+						</div>
+						
+					</section>
+					
+					<section>
+						<h4>Activity profile<br>Dummy example in NetLogo</h4>
+						<div id="left30" style="text-align: left;">
+							<p style="font-size: 40%;">
+								Activities performed a number of times within a cycle (e.g. hours per day or week) according to a predefined sequence of activity IDs (activity profiles).
+								<br><br>
+								A "farming" household could have an activity profile where a `farming` activity occupies 2/3 of their working time-person slots.
+							</p>
+						</div>
+
+						<div id="right70">
+							<figure style="width: 600px; font-size: 50%; text-align: center;">
+								<img width="600" alt="ResourceMetabolism_step3 interface.png" 
+								src="images/ResourceMetabolism_step3 interface.png" style="margin-bottom: 0px;">
+								<figcaption>
+									Working implementation with a population of households
+									with two activities and two activity profiles,
+									producing/consuming three types of artifacts (food, resource1, resource2)
+								</figcaption>
+							</figure>
+						</div>
+						
+					</section>
+
+					<section>
+						<h4>Artifact class<br>Dummy example in Python</h4>
+						<div id="left50" style="text-align: left;">
+							<p style="font-size: 40%;">
+								Hierarchy of artifact subclasses and inheritance of properties:<br><br>
+								e.g., artifact > movable > Container,<br>
+								of ContainerType "VESSEL",
+								<br>of MineralMaterialType "CERAMIC", etc
+								<br><br>
+								Types as extensive, yet finite, collections
+								<br><br>
+								Pathways of production defined by creation, transformation or destruction of artifacts
+							</p>
+						</div>
+
+						<div id="right50">
+							<div style="font-size: 40%; text-align: left;">
+								<i style="color: maroon;">Example of types definition (Enum)</i><br>
+								class AnimalMaterialType(Enum):<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# animal-based<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAMMAL_BONE = 1<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FISH_BONE = 2<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HORN_ANTLER = 3<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PELT = 4<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIDE = 5<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEATHER = 6<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SINEW = 7<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHELL = 8<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TALLOW = 9 # animal fat<br>
+    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEESWAX = 10<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+							</div>
+						</div>
+					</section>
+					
+				</section>
+
+				<section>
+					<p>
+						<h4>challenges</h4>
+						<ul class="fragment" style="font-size: 80%;">
+							<li>Greater distance between archaeological evidence and social explanation</li>
+							<br>
+							<li class="fragment">Reliance on:<br>
+								<ul>
+									<li>indirect written sources (Greeks, Romans)</li>
+									<li>and parallels (archaeological, ethnographic, ethnohistoric)</li>
+								</ul>
+							</li>
+							<br>
+							<li class="fragment">
+								Modelling for the long-haul<br>(good representation delays validation)
+							</li>
+						</ul>
+					</p>
+				</section>
+
+				<section data-background="https://asset.museum-digital.org//media/800/san/images/7/96915-k_3218/oberer_salzach_1941/oberer-salzach-1941-96915.jpg">
+					<i  style="background-color: rgba(255, 255, 255, 0.1);">
+						Thank you<br>
+						for your attention!</i>
+					<br>
+					<br>
+					<div id="right40" style="background-color:#17365c;">
+						<img src="https://services.ruhr-uni-bochum.de/themes/custom/rub/logo.svg" alt="RUB logo"
+					style="width: 350px; border: none; box-shadow: none;"/> &nbsp;
+					</div>
+					<div id="right30">
+						<img src="https://reform.ressourcencampus-bochum.de/wp-content/uploads/2022/02/Image20211019144937-2-2000x1639.jpg" alt="Leipzig logo"
+					style="width: 100px; border: none; box-shadow: none;"/> &nbsp;
+					</div>
+					<div id="left30">
+						<img src="https://reform.ressourcencampus-bochum.de/wp-content/uploads/2022/03/cropped-Reform_Logo_invers_RGB.png" alt="ReForm logo"
+					style="width: 350px; border: none; box-shadow: none;"/>
+					</div>
+					<br>
+					<p style="font-size: 30%; text-align: right;">
+						&nbsp;<br>
+						Oberer Salzach, 1941 by Bruno Jüttner (1880-1965)<br>
+						<a title="Harzmuseum Wernigerode. (2022-12-14). K 3218: Oberer Salzach, 1941" 
+						href="https://st.museum-digital.de/object/96915"
+						style="background-color: rgba(255, 255, 255, 0.1);">
+						(Harzmuseum Wernigerode, K 3218)
+						</a>
+					</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="reveal.js/dist/reveal.js"></script>
+        <script src="reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/search/search.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+
+		<script src="reveal.js-menu/menu.js"></script>
+		<script src="reveal.js-plugins/audio-slideshow/plugin.js"></script>
+		<script src="reveal.js-plugins/audio-slideshow/RecordRTC.js"></script>
+		<script src="reveal.js-plugins/audio-slideshow/recorder.js"></script>
+
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				mouseWheel: true,
+				slideNumber: 'c/t',
+/*
+				audio: {
+					prefix: 'audio/',
+					suffix: '.webm',
+					defaultDuration: 5,
+					textToSpeechURL: "http://api.voicerss.org/?key=f02cebf4e99c493d8a0048fde8a96278&hl=en-gb&c=ogg&src=",
+					advance: 0,
+					autoplay: false,
+					defaultNotes: false,
+					defaultText: false,
+					playerOpacity: 0.5
+				},
+*/
+				menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
+					themes: false,
+					transitions: false,
+					markers: true,
+					hideMissingTitles: true
+				},
+/*
+				keyboard: { 
+					82: function() { Recorder.toggleRecording(); },	// press 'r' to start/stop recording
+					90: function() { Recorder.downloadZip(); }, 	// press 'z' to download zip containing audio files
+					84: function() { Recorder.fetchTTS(); } 	// press 't' to fetch TTS audio files
+  				},
+*/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMenu
+/*					,RevealAudioSlideshow, RevealAudioRecorder
+*/
+					]
+			});
+
+		</script>
+	</body>
+	<div id="background-header">
+		<div style="text-align:center; position:absolute; top:3%; left: 10%; font-size:100%; color:gray">
+			<i>Angourakis, Stöllner & Boenke<br>Ruhr-Universität Bochum</i>
+		</div>
+		<div style="text-align:left; position:absolute; top:3%; right: 10%; font-size:100%; color:gray">
+			<b>EAA 2023 Belfast<br>2 September 2023</b>
+		</div>
+		<!--<div style="text-align:right; position:absolute; top:6%; right: 10%; font-size:100%; color:gray">
+			<b><a style="color: darkcyan;" href="https://andros-spica.github.io/ReForm-Angourakis-2023/">https://andros-spica.github.io/ReForm-Angourakis-2023/</a></b>
+		</div>-->
+	</div>
+</html>
