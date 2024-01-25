@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10567625.svg)](https://doi.org/10.5281/zenodo.10567625)
+
 # Disentangling georesourcescapes with agent-based modelling: the case of prehistoric salt mining at Dürrnberg, Austria
 
 Presentation for EAA 2023 “Weaving narratives” conference (30 August-2 September 2023)
